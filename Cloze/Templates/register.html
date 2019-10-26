@@ -1,33 +1,33 @@
 {% extends "layout.html" %}
 {% block content %}
-  <div class="content-section">
+<div class="content-section">
     <form method="POST" action="">
-      {{ form.hidden_tag() }}
-      <fieldset class="form-group">
-        <legend class="border-bottom mb-4 text-navy">Register</legend>
-        <div class=form-group">
-          {{ form.username.label(class="form-control-label text-navy") }}
-          {{ form.username(class="form-control  form-control-sm") }}
-        </div>
-        <div class=form-group">
-          {{ form.email.label(class="form-control-label text-navy") }}
-          {{ form.email(class="form-control  form-control-sm") }}
-        </div>
-        <div class=form-group">
-          {{ form.password.label(class="form-control-label text-navy") }}
-          {{ form.password(class="form-control  form-control-sm") }}
-        </div>
-        <div class=form-group">
-          {{ form.confirmPassword.label(class="form-control-label text-navy") }}
-          {{ form.confirmPassword(class="form-control  form-control-sm") }}
-        </div>
-      </fieldset>
-      {{ form.submit(class="btn btn-outline-dark") }}
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4 text-navy">Register</legend>
+            <div class=form-group">
+                {{ form.username.label(class="form-control-label text-navy") }}
+                {{ form.username(class="form-control  form-control-sm") }}
+            </div>
+            <div class=form-group">
+                {{ form.email.label(class="form-control-label text-navy") }}
+                {{ form.email(class="form-control  form-control-sm") }}
+            </div>
+            <div class=form-group">
+                {{ form.password.label(class="form-control-label text-navy") }}
+                {{ form.password(class="form-control  form-control-sm") }}
+            </div>
+            <div class=form-group">
+                {{ form.confirmPassword.label(class="form-control-label text-navy") }}
+                {{ form.confirmPassword(class="form-control  form-control-sm") }}
+            </div>
+        </fieldset>
+        {{ form.submit(class="btn btn-outline-dark") }}
     </form>
-  </div>
-  <div class="border-top pt-3 text-white">
+</div>
+<div class="border-top pt-3 text-white">
     <small>
-      Already have an account? <a class="ml-2" href="{{ url_for('login') }}">Sign In</a>
+        Already have an account? <a class="ml-2" href="{{ url_for('login') }}">Sign In</a>
     </small>
-  </div>
+</div>
 {% endblock content %}
