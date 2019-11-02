@@ -1,4 +1,7 @@
-{% extends "layout.html" %}
+{% extends "layoutFull.html" %}
 {% block content %}
-    <h1>Daily Planner</h1>
+<div class="content-section">
+    <p>6:00</p>
+</div>
+<a class="ml-2" href="{{ url_for('dailyPlannerEdit') }}">Edit Planner</a>
 {% endblock content %}

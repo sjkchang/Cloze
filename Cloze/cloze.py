@@ -1,6 +1,6 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, flash, redirect
 import forms
-from forms import LoginForm, RegistrationForm
+from forms import LoginForm, RegistrationForm, PlannerForm
 
 app = Flask(__name__)
 app.debug = False
@@ -11,23 +11,36 @@ def home():
     return render_template('home.html')
 
 @app.route('/')
-@app.route('/login')
+@app.route('/login', methods = ['GET', 'POST'])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        flash('You logged in', 'success')
+        return redirect(url_for('home'))
     return render_template('login.html', title = 'login', form = form)
 
 @app.route('/about')
 def about():
     return render_template('about.html', title = 'about')
 
-@app.route('/register')
+@app.route('/register', methods = ['GET', 'POST'])
 def register():
     form = RegistrationForm()
+    if form.validate_on_submit():
+        flash('You are registered', 'success')
+        return redirect(url_for('login'))
     return render_template('register.html', title = 'register', form = form)
 
 @app.route('/daily_planner')
 def dailyPlanner():
     return render_template('dailyPlanner.html', title = 'Daily Planner')
+
+@app.route('/daily_planner_edit', methods = ['GET', 'POST'])
+def dailyPlannerEdit():
+    form = PlannerForm()
+    if form.validate_on_submit():
+        return redirect(url_for('dailyPlanner'))
+    return render_template('dailyPlannerEdit.html', title = 'Daily Planner', form = form)
 
 @app.route('/workout_log')
 def workoutLog():

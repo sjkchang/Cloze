@@ -1,0 +1,53 @@
+{% extends "layoutFull.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <legend class="border-bottom mb-4 text-navy">Edit Planner</legend>
+        <p>{{form.six(placeholder = "6:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.six30(placeholder = "6:30", class="form-control  form-control-sm")}}</p>
+        <p>{{form.seven(placeholder = "7:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.seven30(placeholder = "7:30", class="form-control  form-control-sm")}}</p>
+        <p>{{form.eight(placeholder = "8:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.eight30(placeholder = "8:30", class="form-control  form-control-sm")}}</p>
+        <p>{{form.nine(placeholder = "9:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.nine30(placeholder = "9:30", class="form-control  form-control-sm")}}</p>
+        <p>{{form.ten(placeholder = "10:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.ten30(placeholder = "10:30", class="form-control  form-control-sm")}}</p>
+        <p>{{form.eleven(placeholder = "11:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.eleven30(placeholder = "11:30", class="form-control  form-control-sm")}}</p>
+        <p>{{form.twelve(placeholder = "12:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.twelve30(placeholder = "12:30", class="form-control  form-control-sm")}}</p>
+        <p>{{form.thirteen(placeholder = "13:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.thirteen30(placeholder = "13:30", class="form-control  form-control-sm")}}</p>
+        <p>{{form.fourteen(placeholder = "14:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.fourteen30(placeholder = "14:30", class="form-control  form-control-sm")}}</p>
+        <p>{{form.fifteen(placeholder = "15:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.fifteen30(placeholder = "15:30", class="form-control  form-control-sm")}}</p>
+        <p>{{form.sixteen(placeholder = "16:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.sixteen30(placeholder = "16:30", class="form-control  form-control-sm")}}</p>
+        <p>{{form.seventeen(placeholder = "17:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.seventeen30(placeholder = "17:30", class="form-control  form-control-sm")}}</p>
+        <p>{{form.eighteen(placeholder = "18:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.eighteen30(placeholder = "18:30", class="form-control  form-control-sm")}}</p>
+        <p>{{form.nineteen(placeholder = "19:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.nineteen30(placeholder = "19:30", class="form-control  form-control-sm")}}</p>
+        <p>{{form.twenty(placeholder = "20:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.twenty30(placeholder = "20:30", class="form-control  form-control-sm")}}</p>
+        <p>{{form.twentyone(placeholder = "21:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.twentyone30(placeholder = "21:30", class="form-control  form-control-sm")}}</p>
+        <p>{{form.twentytwo(placeholder = "22:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.twentytwo30(placeholder = "22:30", class="form-control  form-control-sm")}}</p>
+        <p>{{form.twentythree(placeholder = "23:00", class="form-control  form-control-sm")}}</p>
+        <p>{{form.twentythree30(placeholder = "23:30", class="form-control  form-control-sm")}}</p>
+
+
+
+
+
+
+        {{ form.save(class="btn btn-outline-dark") }}
+
+    </form>
+</div>
+{% endblock content %}
