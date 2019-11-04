@@ -19,9 +19,9 @@ def login():
         return redirect(url_for('home'))
     return render_template('login.html', title = 'login', form = form)
 
-@app.route('/about')
+@app.route('/pomodoro')
 def about():
-    return render_template('about.html', title = 'about')
+    return render_template('pomodoro.html', title = 'pomodoro timer')
 
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
@@ -42,9 +42,10 @@ def dailyPlannerEdit():
         return redirect(url_for('dailyPlanner'))
     return render_template('dailyPlannerEdit.html', title = 'Daily Planner', form = form)
 
-@app.route('/workout_log')
+@app.route('/meal-log')
 def workoutLog():
-    return render_template('workoutLog.html', title = 'Workout Log')
+    return render_template('mealLog.html', title = 'Meal Log')
+
 
 if __name__ == '__main__':
     app.debug = True

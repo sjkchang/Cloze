@@ -40,6 +40,33 @@ a:hover {
     margin-bottom: 20px;
 }
 
-.div {
-    border-bottom-color: #383a56;
+#container{
+  border:10px solid #333;
+  border-radius :20px;
+  width:500px;
+  margin:20px auto;
+  text-align:center;
+  background : #383a56;
+}
+
+#timer{
+  color:#ede68a;
+  font-size:100px;
+  width:500px;
+  height:150px;
+  overflow:hidden;
+  position:relative;
+
+  cursor:default;
+}
+
+#time{
+  margin-top:20px;
+  z-index : 1;
+  position:relative;
+}
+
+#buttons{
+    margin-top:10px;
+    margin-bottom:10px;
 }
