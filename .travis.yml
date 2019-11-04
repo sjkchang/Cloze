@@ -1,4 +1,4 @@
-language: pythonpython:- "2.7"
+language: python:- "2.7.10"
 # command to install dependencies
 install:
     - pip install -r requirements.txt
