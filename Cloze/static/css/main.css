@@ -15,6 +15,10 @@ a:hover {
     color: #ede68a
 }
 
+tr {
+    border-bottom: 1px solid #383a56;
+}
+
 /*nav bar color*/
 .bg-black {
     background-color: #2f3032;

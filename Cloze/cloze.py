@@ -10,7 +10,7 @@ app.config['SECRET_KEY'] = 'b825c713da1c27fc72d8cb8d0875f7cc'
 def home():
     return render_template('home.html')
 
-@app.route('/')
+@app.route('/', methods = ['GET', 'POST'])
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -45,7 +45,6 @@ def dailyPlannerEdit():
 @app.route('/meal-log')
 def workoutLog():
     return render_template('mealLog.html', title = 'Meal Log')
-
 
 if __name__ == '__main__':
     app.debug = True
