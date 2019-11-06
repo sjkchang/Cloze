@@ -1,6 +1,6 @@
 from cloze import app, db, bcrypt, login_manager
-from flask import render_template, url_for, flash, redirect
-from forms import LoginForm, RegistrationForm, PlannerForm, TimerForm
+from flask import render_template, url_for, flash, redirect, request
+from forms import LoginForm, RegistrationForm, PlannerForm, TimerForm, UpdateAccountForm
 from models import User
 from flask_login import login_user, logout_user, current_user, login_required
 
@@ -42,10 +42,20 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title = 'register', form = form)
 
-@app.route('/account')
+@app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
-    return render_template('account.html', title = 'Account')
+    form = UpdateAccountForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Your account has been updated!', 'success')
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+    return render_template('account.html', title='Account', form=form)
 
 @app.route('/daily-planner')
 @login_required
