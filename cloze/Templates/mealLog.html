@@ -1,56 +1,12 @@
-  
 {% extends "layout.html" %}
 {% block content %}
 <div class="content-section">
-    <form>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputFood">Food</label>
-            <input type="text" class="form-control" id="inputFood" placeholder="Your food item">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputFoodAmount">Servings amount</label>
-            <input type="text" class="form-control" id="inputFoodAmount" placeholder="food item amount">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputCalories">Calories</label>
-          <input type="text" class="form-control" id="inputCalories" placeholder="Input calories in one serving">
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="inputProtein">Protein</label>
-            <input type="text" class="form-control" id="inputProtein">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputCarb">Carb</label>
-            <input type="text" class="form-control" id="inputCarb">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputFat">Fat</label>
-            <input type="text" class="form-control" id="inputFat">
-          </div>
-          
-          <div class="form-group col-md-4">
-            <label for="inputMeal">Meal</label>
-            <select id="inputMeal" class="form-control">
-              <option selected>Choose the meal you want to keep track</option>
-              <option>Breakfast</option>
-              <option>Lunch</option>
-              <option>Dinner</option>
-            </select>
-          </div>
-          
-        </div>
-        <div class="form-group">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-              Check your calories again
-            </label>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+    {% for meal in meals %}
+        {{meals.calories}}
+        {{meals.protein}}
+        {{meals.carb}}
+        {{meals.fat}}
+    {% endfor %}
 </div>
+<a class="ml-2" href="{{ url_for('mealLogAdd') }}">Add Meal</a>
 {% endblock content %}

@@ -1,7 +1,7 @@
 from cloze import app, db, bcrypt, login_manager
 from flask import render_template, url_for, flash, redirect, request
-from forms import LoginForm, RegistrationForm, PlannerForm, TimerForm, UpdateAccountForm
-from models import User
+from forms import LoginForm, RegistrationForm, PlannerForm, UpdateAccountForm, MealLogForm
+from models import User, Meal
 from flask_login import login_user, logout_user, current_user, login_required
 
 @app.route('/home')
@@ -70,10 +70,23 @@ def dailyPlannerEdit():
         return redirect(url_for('dailyPlanner'))
     return render_template('dailyPlannerEdit.html', title = 'Daily Planner', form = form)
 
-@app.route('/meal-log')
+@app.route('/meal-log', methods=['GET'])
 @login_required
 def mealLog():
-    return render_template('mealLog.html', title = 'Meal Log')
+    meals = Meal.query.all()
+    return render_template('mealLog.html', title = 'Meal Log', meals = meals)
+
+@app.route('/meal-log/add', methods=['GET', 'POST'])
+@login_required
+def mealLogAdd():
+    form = MealLogForm()
+    if form.validate_on_submit():
+        flash('Meal Added', 'success')
+        meal = Meal(food=form.food.data, servings=form.servings.data, calories=form.calories.data, protein=form.protein.data, carbs=form.carb.data, fats=form.fat.data, owner=current_user)
+        db.session.add(meal)
+        db.session.commit()
+        return redirect(url_for('mealLog'))
+    return render_template('mealLogAdd.html', title = 'Meal Log', form = form)
 
 @app.route('/pomodoro')
 def pomodoro():

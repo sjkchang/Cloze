@@ -11,20 +11,20 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(128), index=True, unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     #planner = db.relationship('DailyPlanner', backref='owner', lazy=True)
-    #mealLog = db.relationship('MealLog', backref='owner', lazy=True)
+    meal = db.relationship('Meal', backref='owner', lazy=True)
 
     def __repr__(self):
         return '<user: {}, email: {}>'.format(self.username, self.email)
 
-class MealLog(db.Model):
+class Meal(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    mealName = db.Column(db.String(128), index=True, nullable=False)
+    food = db.Column(db.String(128), index=True, nullable=False)
     servings = db.Column(db.Integer, index=True)
     calories = db.Column(db.Integer, index=True)
-    protien = db.Column(db.Integer, index=True)
+    protein = db.Column(db.Integer, index=True)
     carbs = db.Column(db.Integer, index=True)
-    fat = db.Column(db.Integer, index=True)
-    meal = db.Column(db.String(10), index=True)
+    fats = db.Column(db.Integer, index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 
 class DailyPlanner(db.Model):

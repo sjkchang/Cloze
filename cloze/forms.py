@@ -48,13 +48,15 @@ class UpdateAccountForm(FlaskForm):
             if user:
                 raise ValidationError('That email is taken. Please choose a different one.')
 
-class TimerForm(FlaskForm):
-    min = StringField('Minutes', validators = [DataRequired()])
-    sec = StringField('Seconds', validators = [DataRequired()])
-    submit = SubmitField('Start')
+class MealLogForm(FlaskForm):
+    food = StringField('Meal', validators=[DataRequired()])
+    servings = IntegerField('Servings', validators=[DataRequired()])
+    calories = IntegerField('Calories', validators=[DataRequired()])
+    protein = IntegerField('Protein', validators=[DataRequired()])
+    carb = IntegerField('Carbs', validators=[DataRequired()])
+    fat = IntegerField('Fat', validators=[DataRequired()])
+    submit = SubmitField('Submit')
 
-class TimerFormRunning(FlaskForm):
-    submit = SubmitField('Stop')
 
 class PlannerForm(FlaskForm):
     six = StringField('6:00')

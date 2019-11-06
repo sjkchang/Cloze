@@ -1,0 +1,35 @@
+
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4 text-navy">Add Meal</legend>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{ form.food(placeholder="Your food item", class="form-control  form-control-sm") }}
+                </div>
+                <div class="form-group col-md-6">
+                    {{ form.servings(placeholder="Number of servings", class="form-control  form-control-sm") }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form.calories(placeholder="Calories per serving", class="form-control  form-control-sm") }}
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                  {{ form.protein(placeholder="Protein (g)", class="form-control  form-control-sm") }}
+                </div>
+                <div class="form-group col-md-4">
+                    {{ form.carb(placeholder="Carbs (g)", class="form-control  form-control-sm") }}
+                </div>
+                <div class="form-group col-md-4">
+                    {{ form.fat(placeholder="Fat (g)", class="form-control  form-control-sm") }}
+                </div>
+            </div>
+        </fieldset>
+        {{ form.submit(class="btn btn-outline-dark") }}
+    </form>
+</div>
+{% endblock content %}
