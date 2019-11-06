@@ -27,6 +27,14 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
+class TimerForm(FlaskForm):
+    min = StringField('Minutes', validators = [DataRequired()])
+    sec = StringField('Seconds', validators = [DataRequired()])
+    submit = SubmitField('Start')
+
+class TimerFormRunning(FlaskForm):
+    submit = SubmitField('Stop')
+
 class PlannerForm(FlaskForm):
     six = StringField('6:00')
     six30 = StringField('6:30')

@@ -1,11 +1,9 @@
 from flask import Flask
-#from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 
 app = Flask(__name__)
-#app.config.from_object(Config)
 app.config['SECRET_KEY'] = 'b825c713da1c27fc72d8cb8d0875f7cc'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cloze.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

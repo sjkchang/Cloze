@@ -1,6 +1,6 @@
 from cloze import app, db, bcrypt, login_manager
 from flask import render_template, url_for, flash, redirect
-from forms import LoginForm, RegistrationForm, PlannerForm
+from forms import LoginForm, RegistrationForm, PlannerForm, TimerForm
 from models import User
 from flask_login import login_user, logout_user, current_user, login_required
 
@@ -17,9 +17,9 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password_hash, form.password.data):
-            login_user(user, remember=False)
+            login_user(user, remember=form.remember.data)
             return redirect(url_for('home'))
-        flash('Email or Pasword is invalid', 'fail')
+        flash('Email or Pasword is invalid', 'error')
     return render_template('login.html', title = 'login', form = form)
 
 @app.route('/logout')
@@ -47,12 +47,12 @@ def register():
 def account():
     return render_template('account.html', title = 'Account')
 
-@app.route('/daily_planner')
+@app.route('/daily-planner')
 @login_required
 def dailyPlanner():
     return render_template('dailyPlanner.html', title = 'Daily Planner')
 
-@app.route('/daily_planner_edit', methods = ['GET', 'POST'])
+@app.route('/daily-planner-edit', methods = ['GET', 'POST'])
 @login_required
 def dailyPlannerEdit():
     form = PlannerForm()
@@ -62,9 +62,9 @@ def dailyPlannerEdit():
 
 @app.route('/meal-log')
 @login_required
-def workoutLog():
+def mealLog():
     return render_template('mealLog.html', title = 'Meal Log')
 
 @app.route('/pomodoro')
-def about():
+def pomodoro():
     return render_template('pomodoro.html', title = 'pomodoro timer')
