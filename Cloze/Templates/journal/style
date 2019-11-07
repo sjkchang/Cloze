@@ -29,7 +29,7 @@ img{
 
 button{
     background-color:#29506D;
-    border:1px solid #29506D;
+    border:1px solid #333333;
     border-radius:2px;
     padding: 1% 5%;
     color:#FFF;
