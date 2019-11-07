@@ -1,0 +1,6 @@
+{% extends "layoutFull.html" %}
+{% block content %}
+ <h1> Daily Journal </h1>
+ <p> Write down anything that is on your mind... </p>
+ <p1> or your goals anything really. </p1>
+{% endblock content %}
