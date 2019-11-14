@@ -1,118 +1,21 @@
-{% extends "layoutFull.html" %}
+{% extends "layout.html" %}
 {% block content %}
 <div class="content-section">
-    <legend class="border-bottom mb-4 text-navy">Daily Planner</legend>
-    <table style="width:100%">
-        <tr>
-            <td>06:00</td>
-        </tr>
-        <tr>
-            <td>06:30</td>
-        </tr>
-        <tr>
-            <td>07:00</td>
-        </tr>
-        <tr>
-            <td>07:30</td>
-        </tr>
-        <tr>
-            <td>08:00</td>
-        </tr>
-        <tr>
-            <td>08:30</td>
-        </tr>
-        <tr>
-            <td>09:00</td>
-        </tr>
-        <tr>
-            <td>09:30</td>
-        </tr>
-        <tr>
-            <td>10:00</td>
-        </tr>
-        <tr>
-            <td>10:30</td>
-        </tr>
-        <tr>
-            <td>11:00</td>
-        </tr>
-        <tr>
-            <td>11:30</td>
-        </tr>
-        <tr>
-            <td>12:00</td>
-        </tr>
-        <tr>
-            <td>12:30</td>
-        </tr>
-        <tr>
-            <td>13:00</td>
-        </tr>
-        <tr>
-            <td>13:30</td>
-        </tr>
-        <tr>
-            <td>14:00</td>
-        </tr>
-        <tr>
-            <td>14:30</td>
-        </tr>
-        <tr>
-            <td>15:00</td>
-        </tr>
-        <tr>
-            <td>15:30</td>
-        </tr>
-        <tr>
-            <td>16:00</td>
-        </tr>
-        <tr>
-            <td>16:30</td>
-        </tr>
-        <tr>
-            <td>17:00</td>
-        </tr>
-        <tr>
-            <td>17:30</td>
-        </tr>
-        <tr>
-            <td>18:00</td>
-        </tr>
-        <tr>
-            <td>18:30</td>
-        </tr>
-        <tr>
-            <td>19:00</td>
-        </tr>
-        <tr>
-            <td>19:30</td>
-        </tr>
-        <tr>
-            <td>20:00</td>
-        </tr>
-        <tr>
-            <td>20:30</td>
-        </tr>
-        <tr>
-            <td>21:00</td>
-        </tr>
-        <tr>
-            <td>21:30</td>
-        </tr>
-        <tr>
-            <td>22:00</td>
-        </tr>
-        <tr>
-            <td>22:30</td>
-        </tr>
-        <tr>
-            <td>23:00</td>
-        </tr>
-        <tr>
-            <td>23:30</td>
-        </tr>
-
-    </table>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4 text-navy">Daily Planner</legend>
+            <div class="form-group">
+                {% for field in form if field.widget.input_type != 'hidden' %}
+                    {% if field.type == "SubmitField" %}
+                        <br>
+                        <div>{{ field(class="btn btn-outline-dark") }}</div>
+                        {% else %}
+                            <div>{{ field.label }} {{ field(class="form-control form-control-sm") }}</div>
+                        {% endif %}
+                {% endfor %}
+            </div>
+        </fieldset> <!--{{ form.save(class="btn btn-outline-dark") }}-->
+    </form>
 </div>
-<a class="ml-2" href="{{ url_for('dailyPlannerEdit') }}">Edit Planner</a>
 {% endblock content %}

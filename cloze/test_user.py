@@ -1,5 +1,6 @@
 from cloze import app, db, bcrypt
 from models import User
+from flask_login import current_user
 import pytest
 
 @pytest.fixture(scope='module')

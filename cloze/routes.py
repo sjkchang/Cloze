@@ -8,6 +8,11 @@ from flask_login import login_user, logout_user, current_user, login_required
 def home():
     return render_template('home.html')
 
+@app.route('/journal')
+@login_required
+def journal():
+    return render_template('journal.html')
+
 @app.route('/', methods = ['GET', 'POST'])
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -57,18 +62,13 @@ def account():
         form.email.data = current_user.email
     return render_template('account.html', title='Account', form=form)
 
-@app.route('/daily-planner')
+@app.route('/daily-planner', methods = ['GET', 'POST'])
 @login_required
 def dailyPlanner():
-    return render_template('dailyPlanner.html', title = 'Daily Planner')
-
-@app.route('/daily-planner-edit', methods = ['GET', 'POST'])
-@login_required
-def dailyPlannerEdit():
     form = PlannerForm()
     if form.validate_on_submit():
         return redirect(url_for('dailyPlanner'))
-    return render_template('dailyPlannerEdit.html', title = 'Daily Planner', form = form)
+    return render_template('dailyPlanner.html', title = 'Daily Planner', form = form)
 
 @app.route('/meal-log', methods=['GET'])
 @login_required
@@ -91,3 +91,7 @@ def mealLogAdd():
 @app.route('/pomodoro')
 def pomodoro():
     return render_template('pomodoro.html', title = 'pomodoro timer')
+
+@app.route('/journal/entry')
+def entry():
+    return render_template('entry.html', title = 'journal')

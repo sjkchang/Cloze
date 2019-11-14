@@ -59,14 +59,14 @@ class MealLogForm(FlaskForm):
 
 
 class PlannerForm(FlaskForm):
-    six = StringField('6:00')
-    six30 = StringField('6:30')
-    seven = StringField('7:00')
-    seven30 = StringField('7:30')
-    eight = StringField('8:00')
-    eight30 = StringField('8:30')
-    nine = StringField('9:00')
-    nine30 = StringField('9:30')
+    six = StringField('06:00')
+    six30 = StringField('06:30')
+    seven = StringField('07:00')
+    seven30 = StringField('07:30')
+    eight = StringField('08:00')
+    eight30 = StringField('08:30')
+    nine = StringField('09:00')
+    nine30 = StringField('09:30')
     ten = StringField('10:00')
     ten30 = StringField('10:30')
     eleven = StringField('11:00')
