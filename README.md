@@ -28,3 +28,5 @@ To verify: Go to account on the nav bar, and fill out the form for what you want
 To verify: go to meal log on nav bar, and press the add meal link. Fill out the form, and submit. A banner indicating a meal has been added should be show up. We have yet to display this data, but you could look in the db file to see if its their. 
 
 ### Feature #8 Journal
+Not completely complete, as it has yet to be incorperated with the database, but works temporarily if you dont navigate away.
+To verify: after logged in navigate to the journal link, and click on the journal entry link. On the new page add text/a journal entry to the text box and submit. The entry should appear below(it will be black text, this hasnt been styled yet)
