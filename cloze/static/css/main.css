@@ -8,15 +8,39 @@ body {
 }
 
 a {
-    color: #b0a565
+    color: #b0a565;
 }
 
 a:hover {
-    color: #ede68a
+    color: #ede68a;
 }
 
 tr {
     border-bottom: 1px solid #383a56;
+}
+
+td {
+    padding-top: 5px;
+    padding-bottom: 2px;
+    vertical-align: bottom;
+    width: 60px;
+    height: 20px;
+}
+
+td+td{
+    padding-top: : 5px;
+    padding-bottom: 2px;
+    vertical-align: bottom;
+    width: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+ul {
+    list-style-type:none;
 }
 
 /*nav bar color*/

@@ -1,7 +1,7 @@
 from cloze import app, db, bcrypt, login_manager
 from flask import render_template, url_for, flash, redirect, request
-from forms import LoginForm, RegistrationForm, PlannerForm, UpdateAccountForm, MealLogForm
-from models import User, Meal
+from forms import LoginForm, RegistrationForm, ToDoForm, UpdateAccountForm, MealLogForm, ClearDBForm
+from models import User, Meal, Task
 from flask_login import login_user, logout_user, current_user, login_required
 
 @app.route('/home')
@@ -16,7 +16,7 @@ def journal():
 @app.route('/', methods = ['GET', 'POST'])
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:
+    if current_user.is_active:
         redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
@@ -62,18 +62,35 @@ def account():
         form.email.data = current_user.email
     return render_template('account.html', title='Account', form=form)
 
-@app.route('/daily-planner', methods = ['GET', 'POST'])
+@app.route('/todo/add', methods = ['GET', 'POST'])
 @login_required
-def dailyPlanner():
-    form = PlannerForm()
+def new_task():
+    form = ToDoForm()
     if form.validate_on_submit():
-        return redirect(url_for('dailyPlanner'))
-    return render_template('dailyPlanner.html', title = 'Daily Planner', form = form)
+        entry = Task(entry = form.entry.data, owner=current_user)
+        db.session.add(entry)
+        db.session.commit()
+        return redirect(url_for('toDo'))
+    return render_template('toDoAdd.html', title = 'To-Do', form = form)
+
+@app.route('/todo/<int:id>/delete', methods=['POST'])
+def delete_tasks(id):
+    task = db.session.query(Task).get_or_404(id)
+    db.session.delete(task)
+    db.session.commit()
+    return redirect(url_for('toDo'))
+
+
+@app.route('/todo', methods = ['GET', 'POST'])
+@login_required
+def toDo():
+    tasks = db.session.query(Task).filter_by(owner=current_user)
+    return render_template('toDo.html', title = 'To-Do', tasks = tasks)
 
 @app.route('/meal-log', methods=['GET'])
 @login_required
 def mealLog():
-    meals = Meal.query.all()
+    meals = db.session.query(Meal).filter_by(owner=current_user)
     return render_template('mealLog.html', title = 'Meal Log', meals = meals)
 
 @app.route('/meal-log/add', methods=['GET', 'POST'])
