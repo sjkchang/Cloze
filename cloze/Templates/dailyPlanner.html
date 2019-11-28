@@ -1,25 +1,27 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="content-section">
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4 text-navy">Daily Planner</legend>
-            <div class="form-group">
-                    {% for field in form if field.widget.input_type != 'hidden' %}
-                        {% if field.type == "SubmitField" %}
-                        <br>
-                        <td>{{ field(class="btn btn-outline-dark") }}</td>
-                            {% else %}
-                            <table>
-                                <tr>
-                                    <td>{{ field.label }}</td><td>{{ field(class="form-control form-control-sm") }}</td>
-                                </tr>
-                            </table>
-                            {% endif %}
-                    {% endfor %}
-            </div>
-        </fieldset> <!--{{ form.save(class="btn btn-outline-dark") }}-->
-    </form>
+<div class="col-md-8">
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 text-navy">Daily Planner</legend>
+                <div class="form-group">
+                        {% for field in form if field.widget.input_type != 'hidden' %}
+                            {% if field.type == "SubmitField" %}
+                            <br>
+                            <td>{{ field(class="btn btn-outline-dark") }}</td>
+                                {% else %}
+                                <table>
+                                    <tr>
+                                        <td>{{ field.label }}</td><td>{{ field(class="form-control form-control-sm") }}</td>
+                                    </tr>
+                                </table>
+                                {% endif %}
+                        {% endfor %}
+                </div>
+            </fieldset> <!--{{ form.save(class="btn btn-outline-dark") }}-->
+        </form>
+    </div>
 </div>
 {% endblock content %}

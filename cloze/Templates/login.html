@@ -1,29 +1,31 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="content-section">
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4 text-navy">Login</legend>
-            <div class=form-group">
-                {{ form.email(placeholder="Email", class="form-control  form-control-sm") }}
-            </div>
-            <br>
-            <div class=form-group">
-                {{ form.password(placeholder="Password", class="form-control  form-control-sm") }}
-            </div>
-            <br>
-            <div class="form-check">
-                {{ form.remember(class="form-check-input") }}
-                {{ form.remember.label(class="form-check-label") }}
-            </div>
-        </fieldset>
-        {{ form.submit(class="btn btn-outline-dark") }}
-    </form>
-</div>
-<div class="border-top pt-3 text-white">
-    <small>
-        Don't have an account? <a class="ml-2" href="{{ url_for('register') }}">Create Account</a>
-    </small>
+<div class="col-md-8">
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 text-navy">Login</legend>
+                <div class=form-group">
+                    {{ form.email(placeholder="Email", class="form-control  form-control-sm") }}
+                </div>
+                <br>
+                <div class=form-group">
+                    {{ form.password(placeholder="Password", class="form-control  form-control-sm") }}
+                </div>
+                <br>
+                <div class="form-check">
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
+                </div>
+            </fieldset>
+            {{ form.submit(class="btn btn-outline-dark") }}
+        </form>
+    </div>
+    <div class="border-top pt-3 text-white">
+        <small>
+            Don't have an account? <a class="ml-2" href="{{ url_for('register') }}">Create Account</a>
+        </small>
+    </div>
 </div>
 {% endblock content %}

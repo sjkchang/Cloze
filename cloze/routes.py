@@ -1,17 +1,12 @@
 from cloze import app, db, bcrypt, login_manager
 from flask import render_template, url_for, flash, redirect, request
-from forms import LoginForm, RegistrationForm, ToDoForm, UpdateAccountForm, MealLogForm, ClearDBForm
-from models import User, Meal, Task
+from forms import LoginForm, RegistrationForm, ToDoForm, UpdateAccountForm, MealLogForm, ClearDBForm, ChallengeForm, EntryForm
+from models import User, Meal, Task, Challenge, Entry
 from flask_login import login_user, logout_user, current_user, login_required
 
 @app.route('/home')
 def home():
     return render_template('home.html')
-
-@app.route('/journal')
-@login_required
-def journal():
-    return render_template('journal.html')
 
 @app.route('/', methods = ['GET', 'POST'])
 @app.route('/login', methods = ['GET', 'POST'])
@@ -67,6 +62,7 @@ def account():
 def new_task():
     form = ToDoForm()
     if form.validate_on_submit():
+        flash('Task Added', 'success')
         entry = Task(entry = form.entry.data, owner=current_user)
         db.session.add(entry)
         db.session.commit()
@@ -109,6 +105,37 @@ def mealLogAdd():
 def pomodoro():
     return render_template('pomodoro.html', title = 'pomodoro timer')
 
-@app.route('/journal/entry')
+@app.route('/challenges')
+def challenges():
+    challenges = db.session.query(Challenge)
+    return render_template('challenges.html', title = 'Challenges', challenges=challenges)
+
+@app.route('/challenges/create', methods = ['GET', 'POST'])
+@login_required
+def new_challenges():
+    form = ChallengeForm()
+    if form.validate_on_submit():
+        flash('Challenge Added', 'success')
+        challenge = Challenge(title=form.title.data, description=form.description.data, owner=current_user)
+        db.session.add(challenge)
+        db.session.commit()
+        return redirect(url_for('challenges'))
+    return render_template('newChallenges.html', title='Challenges', form=form)
+
+@app.route('/journal')
+@login_required
+def journal():
+    entries = db.session.query(Entry).filter_by(owner = current_user)
+    return render_template('journal.html', entries=entries)
+
+@app.route('/journal/entry', methods=['GET', 'POST'])
+@login_required
 def entry():
-    return render_template('entry.html', title = 'journal')
+    form = EntryForm()
+    if form.validate_on_submit():
+        flash('Entry Added', 'success')
+        entry = Entry(title=form.title.data, content=form.content.data, owner=current_user)
+        db.session.add(entry)
+        db.session.commit()
+        return redirect(url_for('journal'))
+    return render_template('entry.html', title = 'journal', form=form)

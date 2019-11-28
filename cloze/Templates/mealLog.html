@@ -1,12 +1,24 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="content-section">
+<div class="col-md-8">
+    <div class="content-section">
     {% for meal in meals %}
-        {{meals.calories}}
-        {{meals.protein}}
-        {{meals.carb}}
-        {{meals.fat}}
+        <p>Meal: {{meal.food}}</p>
+        <p>Servings: {{meal.servings}}</p>
+        <p>Calories: {{meal.calories}}</p>
+        <p>Protein(g): {{meal.protein}}</p>
+        <p>Carbs(g): {{meal.carbs}}</p>
+        <p>Fats(g): {{meal.fats}}</p>
     {% endfor %}
+    </div>
+    <a class="ml-2" href="{{ url_for('mealLogAdd') }}">Add Meal</a>
 </div>
-<a class="ml-2" href="{{ url_for('mealLogAdd') }}">Add Meal</a>
+<div class="col-md-4">
+    <div class="content-section">
+        <h3>Todays Calories:</h3>
+        <h4>Todays Carbs:</h4>
+        <h4>Todays Fats:</h4>
+        <h4>Todays Protien:</h4>
+    </div>
+</div>
 {% endblock content %}

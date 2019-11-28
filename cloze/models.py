@@ -12,6 +12,9 @@ class User(db.Model, UserMixin):
     password_hash = db.Column(db.String(128), nullable=False)
     list = db.relationship('Task', backref='owner', lazy=True)
     meal = db.relationship('Meal', backref='owner', lazy=True)
+    challenge = db.relationship('Challenge', backref='owner', lazy=True)
+    entry = db.relationship('Entry', backref='owner', lazy=True)
+
 
     def __repr__(self):
         return '<user: {}, email: {}>'.format(self.username, self.email)
@@ -30,4 +33,16 @@ class Meal(db.Model):
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     entry = db.Column(db.String(256), index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+class Entry(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(256), index=True)
+    content = db.Column(db.String(512), index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+class Challenge(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(256), index=True)
+    description = db.Column(db.String(512), index=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)

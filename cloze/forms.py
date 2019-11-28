@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from models import User
 from flask_login import current_user
@@ -30,10 +30,8 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class UpdateAccountForm(FlaskForm):
-    username = StringField('Username',
-                           validators=[DataRequired(), Length(min=2, max=20)])
-    email = StringField('Email',
-                        validators=[DataRequired(), Email()])
+    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
+    email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Update')
 
     def validate_username(self, username):
@@ -61,6 +59,16 @@ class MealLogForm(FlaskForm):
 class ToDoForm(FlaskForm):
     entry = StringField('Entry')
     submit = SubmitField('Submit')
+
+class ChallengeForm(FlaskForm):
+    title = StringField('Challenge', validators=[DataRequired()])
+    description = TextAreaField('Description', validators=[DataRequired()])
+    submit = SubmitField('Create')
+
+class EntryForm(FlaskForm):
+    title = StringField('Challenge', validators=[DataRequired()])
+    content = TextAreaField('Content', validators=[DataRequired()])
+    submit = SubmitField('Add')
 
 class ClearDBForm(FlaskForm):
     clear = SubmitField('Clear')

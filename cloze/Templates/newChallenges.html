@@ -2,18 +2,18 @@
 {% block content %}
 <div class="col-md-8">
     <div class="">
-        <legend class="border-bottom mb-4" style = "color: #ede68a">Add Journal Entry</legend>
+        <legend class="border-bottom mb-4" style = "color: #ede68a">Create New Challenge</legend>
     </div>
     <div class="content-section">
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <div class=form-group">
-                    {{ form.title(placeholder="Entry Title", class="form-control form-control-sm") }}
+                    {{ form.title(placeholder="Challenge Title", class="form-control form-control-sm") }}
                 </div>
                 <br>
                 <div class=form-group">
-                    {{ form.content(placeholder="Entry", class="form-control  form-control-sm") }}
+                    {{ form.description(placeholder="Challenge Description", class="form-control  form-control-sm") }}
                 </div>
                 <br>
             </fieldset>

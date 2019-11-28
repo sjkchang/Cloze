@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="col-md-8">
+    <div class="">
+        <a style="float:right; vertical-align: bottom;" href="{{ url_for('new_challenges') }}">Add Challenge</a>
+        <legend class="border-bottom mb-2" style="color: #ede68a;">Challenges</legend>
+    </div>
+    {% for challenge in challenges %}
+        <div class="content-section">
+            <legend class="border-bottom mb-4">Challenge: {{challenge.title}}</legend>
+            {{challenge.description}}
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}
