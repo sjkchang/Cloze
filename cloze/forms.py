@@ -22,7 +22,6 @@ class RegistrationForm(FlaskForm):
         if user:
             raise ValidationError('Email already in use')
 
-
 class LoginForm(FlaskForm):
     email = StringField('Email', validators = [DataRequired(), Email()])
     password = PasswordField('Password', validators = [DataRequired(), Length(min=8, max=20)])
@@ -55,7 +54,6 @@ class MealLogForm(FlaskForm):
     fat = IntegerField('Fat', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
-
 class ToDoForm(FlaskForm):
     entry = StringField('Entry')
     submit = SubmitField('Submit')
@@ -69,6 +67,3 @@ class EntryForm(FlaskForm):
     title = StringField('Challenge', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
     submit = SubmitField('Add')
-
-class ClearDBForm(FlaskForm):
-    clear = SubmitField('Clear')

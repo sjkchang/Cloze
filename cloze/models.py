@@ -15,7 +15,6 @@ class User(db.Model, UserMixin):
     challenge = db.relationship('Challenge', backref='owner', lazy=True)
     entry = db.relationship('Entry', backref='owner', lazy=True)
 
-
     def __repr__(self):
         return '<user: {}, email: {}>'.format(self.username, self.email)
 

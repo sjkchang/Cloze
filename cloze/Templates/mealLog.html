@@ -3,22 +3,34 @@
 <div class="col-md-8">
     <div class="content-section">
     {% for meal in meals %}
-        <p>Meal: {{meal.food}}</p>
-        <p>Servings: {{meal.servings}}</p>
-        <p>Calories: {{meal.calories}}</p>
-        <p>Protein(g): {{meal.protein}}</p>
-        <p>Carbs(g): {{meal.carbs}}</p>
-        <p>Fats(g): {{meal.fats}}</p>
+        <div class="">
+            <form action="{{ url_for('delete_meal', id=meal.id) }}" method="POST" >
+                <input align="right" class="btn btn-sm btn-outline-danger py-0" style="float: right; font-size: 0.8em;" type="submit" value="Delete">
+            </form>
+            <form action="{{ url_for('edit_meal', id=meal.id) }}" method="POST" >
+                <input align="right" class="btn btn-sm btn-outline-primary py-0" style="float: right; font-size: 0.8em;" type="submit" value="Edit">
+            </form>
+            <legend class="border-bottom mb-4 text-navy">{{meal.food}}</legend>
+            <p>
+                Servings: {{meal.servings}}
+                Calories: {{meal.calories}}
+            </p>
+            <p>
+                Protein(g): {{meal.protein}}
+                Carbs(g): {{meal.carbs}}
+                Fats(g): {{meal.fats}}
+            </p>
+        </div>
     {% endfor %}
     </div>
     <a class="ml-2" href="{{ url_for('mealLogAdd') }}">Add Meal</a>
 </div>
 <div class="col-md-4">
     <div class="content-section">
-        <h3>Todays Calories:</h3>
-        <h4>Todays Carbs:</h4>
-        <h4>Todays Fats:</h4>
-        <h4>Todays Protien:</h4>
+        <h3>Total Calories: {{totCal}}</h3>
+        <h4>Total Carbs: {{totCarbs}}</h4>
+        <h4>Total Fats: {{totFat}}</h4>
+        <h4>Total Protein: {{totProtein}}</h4>
     </div>
 </div>
 {% endblock content %}

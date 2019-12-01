@@ -1,8 +1,14 @@
+from __future__ import print_function
 from cloze import app, db, bcrypt, login_manager
 from flask import render_template, url_for, flash, redirect, request
-from forms import LoginForm, RegistrationForm, ToDoForm, UpdateAccountForm, MealLogForm, ClearDBForm, ChallengeForm, EntryForm
+from forms import LoginForm, RegistrationForm, ToDoForm, UpdateAccountForm, MealLogForm, ChallengeForm, EntryForm
 from models import User, Meal, Task, Challenge, Entry
-from flask_login import login_user, logout_user, current_user, login_required
+from mealLog import getTotals
+from dbControl import Control
+from flask_login import login_user, logout_user, current_user, login_required, login_manager
+import sys
+
+cntr = Control()
 
 @app.route('/home')
 def home():
@@ -11,8 +17,6 @@ def home():
 @app.route('/', methods = ['GET', 'POST'])
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
-    if current_user.is_active:
-        redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -34,11 +38,7 @@ def register():
         redirect(url_for('home'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        passwordHash = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, email=form.email.data, password_hash=passwordHash)
-        db.session.add(user)
-        db.session.commit()
-        flash('Account Created, please sign in', 'success')
+        cntr.add(User, form)
         return redirect(url_for('login'))
     return render_template('register.html', title = 'register', form = form)
 
@@ -47,9 +47,7 @@ def register():
 def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
-        current_user.username = form.username.data
-        current_user.email = form.email.data
-        db.session.commit()
+        cntr.edit(User, form, current_user.id)
         flash('Your account has been updated!', 'success')
         return redirect(url_for('account'))
     elif request.method == 'GET':
@@ -62,20 +60,14 @@ def account():
 def new_task():
     form = ToDoForm()
     if form.validate_on_submit():
-        flash('Task Added', 'success')
-        entry = Task(entry = form.entry.data, owner=current_user)
-        db.session.add(entry)
-        db.session.commit()
+        cntr.add(Task, form)
         return redirect(url_for('toDo'))
     return render_template('toDoAdd.html', title = 'To-Do', form = form)
 
 @app.route('/todo/<int:id>/delete', methods=['POST'])
 def delete_tasks(id):
-    task = db.session.query(Task).get_or_404(id)
-    db.session.delete(task)
-    db.session.commit()
+    cntr.delete(Task, id)
     return redirect(url_for('toDo'))
-
 
 @app.route('/todo', methods = ['GET', 'POST'])
 @login_required
@@ -87,19 +79,31 @@ def toDo():
 @login_required
 def mealLog():
     meals = db.session.query(Meal).filter_by(owner=current_user)
-    return render_template('mealLog.html', title = 'Meal Log', meals = meals)
+    return render_template('mealLog.html', title = 'Meal Log', meals = meals, totCal=getTotals("calories"), totFat=getTotals("fat"), totProtein=getTotals("protein"), totCarbs=getTotals("carbs"))
 
 @app.route('/meal-log/add', methods=['GET', 'POST'])
 @login_required
 def mealLogAdd():
     form = MealLogForm()
     if form.validate_on_submit():
-        flash('Meal Added', 'success')
-        meal = Meal(food=form.food.data, servings=form.servings.data, calories=form.calories.data, protein=form.protein.data, carbs=form.carb.data, fats=form.fat.data, owner=current_user)
-        db.session.add(meal)
-        db.session.commit()
+        cntr.add(Meal, form)
         return redirect(url_for('mealLog'))
     return render_template('mealLogAdd.html', title = 'Meal Log', form = form)
+
+@app.route('/meal-log/<int:id>/delete', methods=['POST'])
+def delete_meal(id):
+    cntr.delete(Meal, id)
+    return redirect(url_for('mealLog'))
+
+@app.route('/meal-log/<int:id>/edit', methods=['GET', 'POST'])
+@login_required
+def edit_meal(id):
+    form = MealLogForm()
+    if form.validate_on_submit():
+        cntr.edit(Meal, form, id)
+        return redirect(url_for('mealLog'))
+
+    return render_template('mealLogEdit.html', title = 'Meal Log', form = form)
 
 @app.route('/pomodoro')
 def pomodoro():
@@ -115,27 +119,53 @@ def challenges():
 def new_challenges():
     form = ChallengeForm()
     if form.validate_on_submit():
-        flash('Challenge Added', 'success')
-        challenge = Challenge(title=form.title.data, description=form.description.data, owner=current_user)
-        db.session.add(challenge)
-        db.session.commit()
+        cntr.add(Challenge, form)
         return redirect(url_for('challenges'))
     return render_template('newChallenges.html', title='Challenges', form=form)
+
+@app.route('/challenges/<int:id>/edit', methods=['GET', 'POST'])
+@login_required
+def edit_challenge(id):
+    form = ChallengeForm()
+    edit = db.session.query(Challenge).get_or_404(id)
+    if form.validate_on_submit():
+        cntr.edit(Challenge, form, id)
+        return redirect(url_for('challenges'))
+
+    return render_template('challengeEdit.html', title = 'Challenge', form = form)
+
+@app.route('/challenges/<int:id>/delete', methods=['POST'])
+def delete_challenge(id):
+    cntr.delete(Challenge, id)
+    return redirect(url_for('challenges'))
 
 @app.route('/journal')
 @login_required
 def journal():
     entries = db.session.query(Entry).filter_by(owner = current_user)
-    return render_template('journal.html', entries=entries)
+    return render_template('journal.html', entries=entries, title="Journal")
 
 @app.route('/journal/entry', methods=['GET', 'POST'])
 @login_required
 def entry():
     form = EntryForm()
     if form.validate_on_submit():
-        flash('Entry Added', 'success')
-        entry = Entry(title=form.title.data, content=form.content.data, owner=current_user)
-        db.session.add(entry)
-        db.session.commit()
+        cntr.add(Entry, form)
         return redirect(url_for('journal'))
     return render_template('entry.html', title = 'journal', form=form)
+
+@app.route('/journal/<int:id>/edit', methods=['GET', 'POST'])
+@login_required
+def edit_entry(id):
+    form = EntryForm()
+    edit = db.session.query(Entry).get_or_404(id)
+    if form.validate_on_submit():
+        cntr.edit(Entry, form, id)
+        return redirect(url_for('journal'))
+
+    return render_template('entryEdit.html', title = 'Journal', form = form)
+
+@app.route('/journal/<int:id>/delete', methods=['POST'])
+def delete_entry(id):
+    cntr.delete(Entry, id)
+    return redirect(url_for('journal'))

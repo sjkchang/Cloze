@@ -7,7 +7,15 @@
     </div>
     {% for challenge in challenges %}
         <div class="content-section">
-            <legend class="border-bottom mb-4">Challenge: {{challenge.title}}</legend>
+            <div>
+                <form action="{{ url_for('delete_challenge', id=challenge.id) }}" method="POST" >
+                    <input align="right" class="btn btn-sm btn-outline-danger py-0" style="float: right; font-size: 0.8em;" type="submit" value="Delete">
+                </form>
+                <form action="{{ url_for('edit_challenge', id=challenge.id) }}" method="POST" >
+                    <input align="right" class="btn btn-sm btn-outline-primary py-0" style="float: right; font-size: 0.8em;" type="submit" value="Edit">
+                </form>
+                <legend class="border-bottom mb-4">Challenge: {{challenge.title}}</legend>
+            </div>
             {{challenge.description}}
         </div>
     {% endfor %}
