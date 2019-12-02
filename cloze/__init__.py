@@ -8,7 +8,7 @@ login_manager = LoginManager()
 bcrypt = Bcrypt()
 
 def create_app(testing):
-    app = Flask(__name__, instance_relative_config=False)
+    app = Flask(__name__)
 
     if testing == False:
         # load the instance config, if it exists, when not testing
