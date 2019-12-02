@@ -1,1 +1,1 @@
-web: gunicorn cloze:app
+web: python run.py
