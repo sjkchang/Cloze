@@ -30,3 +30,4 @@ def create_app(testing):
         return app
 
 app = create_app(False)
+
