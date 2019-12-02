@@ -1,6 +1,6 @@
 from __future__ import print_function
 from flask import current_app as app
-from . import db, bcrypt, login_manager
+from . import db, login_manager, bcrypt
 from flask import render_template, url_for, flash, redirect, request
 from .forms import LoginForm, RegistrationForm, ToDoForm, UpdateAccountForm, MealLogForm, ChallengeForm, EntryForm
 from .models import User, Meal, Task, Challenge, Entry
