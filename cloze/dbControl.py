@@ -1,6 +1,6 @@
 from cloze import db, bcrypt
 from flask import flash
-from models import User, Meal, Task, Challenge, Entry
+from .models import User, Meal, Task, Challenge, Entry
 from flask_login import current_user
 
 class Control():
