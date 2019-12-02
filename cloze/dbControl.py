@@ -30,34 +30,29 @@ class Control():
 
         db.session.commit()
 
-    def add(self, type, form):
+    def add(self, type, formData, user):
         if(type == Challenge):
-            flash('Challenge Added', 'success')
-            challenge = Challenge(title=form.title.data, description=form.description.data, owner=current_user)
+            challenge = Challenge(title=formData[0], description=formData[1], owner=user)
             db.session.add(challenge)
             db.session.commit()
 
         if(type == Task):
-            flash('Task Added', 'success')
-            entry = Task(entry = form.entry.data, owner=current_user)
-            db.session.add(entry)
+            task = Task(entry=formData[0], owner=user)
+            db.session.add(task)
             db.session.commit()
 
         if(type == Meal):
-            flash('Meal Added', 'success')
-            meal = Meal(food=form.food.data, servings=form.servings.data, calories=form.calories.data, protein=form.protein.data, carbs=form.carb.data, fats=form.fat.data, owner=current_user)
+            meal = Meal(food=formData[0], calories=formData[1], servings=formData[2], protein=formData[3], carbs=formData[4], fats=formData[5], owner=user)
             db.session.add(meal)
             db.session.commit()
 
         if(type == Entry):
-            flash('Entry Added', 'success')
-            entry = Entry(title=form.title.data, content=form.content.data, owner=current_user)
+            entry = Entry(title=formData[0], content=formData[1], owner=user)
             db.session.add(entry)
             db.session.commit()
 
-        if(type == User):
-            passwordHash = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-            user = User(username=form.username.data, email=form.email.data, password_hash=passwordHash)
-            db.session.add(user)
-            db.session.commit()
-            flash('Account Created, please sign in', 'success')
+    def addUser(self, formData):
+        passwordHash = bcrypt.generate_password_hash(formData[2]).decode('utf-8')
+        testUser = User(username=formData[0], email=formData[1], password_hash=passwordHash)
+        db.session.add(testUser)
+        db.session.commit()

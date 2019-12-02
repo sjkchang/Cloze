@@ -3,13 +3,27 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'b825c713da1c27fc72d8cb8d0875f7cc'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cloze.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
-login_manager = LoginManager(app)
-login_manager.login_view = 'login'
+db = SQLAlchemy()
+login_manager = LoginManager()
+bcrypt = Bcrypt()
 
-from cloze import routes
+def create_app(testing):
+    app = Flask(__name__, instance_relative_config=False)
+
+    if testing == False:
+        # load the instance config, if it exists, when not testing
+        app.config.from_object('config.Config')
+    else:
+        app.config.from_object('config.TestConfig')
+
+    db.init_app(app)
+    login_manager.init_app(app)
+    login_manager.login_view = 'login'
+
+    with app.app_context():
+        # Include our routes
+        from . import routes
+
+        db.create_all()
+
+        return app

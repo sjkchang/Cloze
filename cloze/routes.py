@@ -1,10 +1,11 @@
 from __future__ import print_function
-from cloze import app, db, bcrypt, login_manager
+from flask import current_app as app
+from . import db, bcrypt, login_manager
 from flask import render_template, url_for, flash, redirect, request
-from forms import LoginForm, RegistrationForm, ToDoForm, UpdateAccountForm, MealLogForm, ChallengeForm, EntryForm
-from models import User, Meal, Task, Challenge, Entry
-from mealLog import getTotals
-from dbControl import Control
+from .forms import LoginForm, RegistrationForm, ToDoForm, UpdateAccountForm, MealLogForm, ChallengeForm, EntryForm
+from .models import User, Meal, Task, Challenge, Entry
+from .mealLog import getTotals
+from .dbControl import Control
 from flask_login import login_user, logout_user, current_user, login_required, login_manager
 import sys
 
@@ -12,6 +13,8 @@ cntr = Control()
 
 @app.route('/home')
 def home():
+    #db.drop_all()
+    #db.create_all()
     return render_template('home.html')
 
 @app.route('/', methods = ['GET', 'POST'])
@@ -38,7 +41,9 @@ def register():
         redirect(url_for('home'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        cntr.add(User, form)
+        formData = [form.username.data, form.email.data, form.password.data]
+        cntr.addUser(formData)
+        flash('Account Created, please sign in', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', title = 'register', form = form)
 
@@ -60,7 +65,9 @@ def account():
 def new_task():
     form = ToDoForm()
     if form.validate_on_submit():
-        cntr.add(Task, form)
+        flash('Task Added', 'success')
+        formData = [form.entry.data]
+        cntr.add(Task, formData, current_user)
         return redirect(url_for('toDo'))
     return render_template('toDoAdd.html', title = 'To-Do', form = form)
 
@@ -79,14 +86,16 @@ def toDo():
 @login_required
 def mealLog():
     meals = db.session.query(Meal).filter_by(owner=current_user)
-    return render_template('mealLog.html', title = 'Meal Log', meals = meals, totCal=getTotals("calories"), totFat=getTotals("fat"), totProtein=getTotals("protein"), totCarbs=getTotals("carbs"))
+    return render_template('mealLog.html', title = 'Meal Log', meals = meals, totCal=getTotals("calories", current_user), totFat=getTotals("fat", current_user), totProtein=getTotals("protein", current_user), totCarbs=getTotals("carbs", current_user))
 
 @app.route('/meal-log/add', methods=['GET', 'POST'])
 @login_required
 def mealLogAdd():
     form = MealLogForm()
     if form.validate_on_submit():
-        cntr.add(Meal, form)
+        flash('Meal Added', 'success')
+        formData = [form.food.data, form.calories.data, form.servings.data, form.protein.data, form.carb.data, form.fat.data]
+        cntr.add(Meal, formData, current_user)
         return redirect(url_for('mealLog'))
     return render_template('mealLogAdd.html', title = 'Meal Log', form = form)
 
@@ -119,7 +128,9 @@ def challenges():
 def new_challenges():
     form = ChallengeForm()
     if form.validate_on_submit():
-        cntr.add(Challenge, form)
+        flash('Challenge Added', 'success')
+        formData = [form.title.data, form.description.data]
+        cntr.add(Challenge, formData, current_user)
         return redirect(url_for('challenges'))
     return render_template('newChallenges.html', title='Challenges', form=form)
 
@@ -150,7 +161,9 @@ def journal():
 def entry():
     form = EntryForm()
     if form.validate_on_submit():
-        cntr.add(Entry, form)
+        flash('Entry Added', 'success')
+        formData = [form.title.data, form.content.data]
+        cntr.add(Entry, formData, current_user)
         return redirect(url_for('journal'))
     return render_template('entry.html', title = 'journal', form=form)
 
