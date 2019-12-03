@@ -2,7 +2,7 @@
 Cloze, a productivity webapp, (travis ci says failing, but tests pass if you run pytest in cmd line)
 [![Build Status](https://travis-ci.com/sjkchang/vigilant-waffle.svg?branch=master)](https://travis-ci.com/sjkchang/vigilant-waffle)
 ## How to Run
-To run the project, run the run.py file with python 2.7, the go to http://localhost:5000 (pip Install any imports that you do not already have on your system)
+To run the project, run the run.py file with python 2.7, the go to http://localhost:5000 (pip Install any imports that you do not already have on your system) If you try to run on python 3 you will get an error cannont convert byte to json, install simplejson to fix this.
 
 ### Feature #1 Register
 Registers user into the database, with their username, email, and password
@@ -25,8 +25,20 @@ To Verify: Click pomodoro Timer in nav bar. There are four buttons, work should 
 To verify: Go to account on the nav bar, and fill out the form for what you want to change. Log out and log back in with the new username or email
 
 ### Feature #7 Add meal
-To verify: go to meal log on nav bar, and press the add meal link. Fill out the form, and submit. A banner indicating a meal has been added should be show up. We have yet to display this data, but you could look in the db file to see if its their.
+To verify: go to meal log on nav bar, and press the add meal link. Fill out the form, and submit. A banner indicating a meal has been added should be show up, and the information you submited should appear in a content box.
 
 ### Feature #8 Journal
-Not completely complete, as it has yet to be incorperated with the database, but works temporarily if you dont navigate away.
-To verify: after logged in navigate to the journal link, and click on the journal entry link. On the new page add text/a journal entry to the text box and submit. The entry should appear below(it will be black text, this hasnt been styled yet)
+To verify: after logged in navigate to the journal link, and click on the add entry link. On the new page fill out the form and submit. You should be redirected to the journal page where your entry will be displayed. 
+
+### Feature #9 TO-DO List
+TO verify: After logging in, click on the to do link on the nav bar. Click add entry, fill out the form and submit. You should see your new task appear
+
+### Feature #10 Challenges
+To verify: After logging in, click on the challenges link on the nav bar. Click add challenge, fill out the form and submit.
+You should see your challenge, and any other challenge created by any other user on the challenge page.
+
+### Feature #11 Edit challenges, meals and journal entries
+To verify: Click the edit button on a challenges, meal or journal entry, and resubmit the form with the edited content
+
+### Feature #12 Delete challenges, meals and journal entries
+TO verify: Click the delete button on a challenges, meal or journal entry, it should disappear
