@@ -6,10 +6,13 @@ Welcome to cloze's documentation!
 .. automodule:: cloze.dbControl
     :members:
 
-.. automodule:: cloze.forms
+.. automodule:: cloze.mealLog
     :members:
 
 .. automodule:: cloze.forms
+    :members:
+
+.. automodule:: cloze.models
     :members:
 
 .. automodule:: cloze.routes

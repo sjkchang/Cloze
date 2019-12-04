@@ -112,6 +112,68 @@
 </dd></dl>
 
 </div>
+<span class="target" id="module-cloze.mealLog"></span><div class="section" id="meallog-py">
+<h2>mealLog.py<a class="headerlink" href="#meallog-py" title="Permalink to this headline">¶</a></h2>
+<p>Used to calculate totals for the meal log</p>
+<dl class="function">
+<dt id="cloze.mealLog.getTotalCalories">
+<code class="sig-prename descclassname">cloze.mealLog.</code><code class="sig-name descname">getTotalCalories</code><span class="sig-paren">(</span><em class="sig-param">owner</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.mealLog.getTotalCalories" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the total calories consumed by a user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>owner</strong> -- The user who's total is being calculated</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="cloze.mealLog.getTotalCarbs">
+<code class="sig-prename descclassname">cloze.mealLog.</code><code class="sig-name descname">getTotalCarbs</code><span class="sig-paren">(</span><em class="sig-param">owner</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.mealLog.getTotalCarbs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the total carbs consumed by a user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>owner</strong> -- The user who's total is being calculated</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="cloze.mealLog.getTotalFat">
+<code class="sig-prename descclassname">cloze.mealLog.</code><code class="sig-name descname">getTotalFat</code><span class="sig-paren">(</span><em class="sig-param">owner</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.mealLog.getTotalFat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the total fats consumed by a user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>owner</strong> -- The user who's total is being calculated</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="cloze.mealLog.getTotalProtein">
+<code class="sig-prename descclassname">cloze.mealLog.</code><code class="sig-name descname">getTotalProtein</code><span class="sig-paren">(</span><em class="sig-param">owner</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.mealLog.getTotalProtein" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the total protein consumed by a user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>owner</strong> -- The user who's total is being calculated</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="cloze.mealLog.getTotals">
+<code class="sig-prename descclassname">cloze.mealLog.</code><code class="sig-name descname">getTotals</code><span class="sig-paren">(</span><em class="sig-param">type</em>, <em class="sig-param">owner</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.mealLog.getTotals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the totals for meal log</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> -- string determining the type of total to be returned calories, servings, carbs, ect.</p></li>
+<li><p><strong>owner</strong> -- User who's totals are being calculated</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
 <span class="target" id="module-cloze.forms"></span><div class="section" id="forms-py">
 <h2>forms.py<a class="headerlink" href="#forms-py" title="Permalink to this headline">¶</a></h2>
 <p>File for all of the Custom FlaskForms we use</p>
@@ -180,71 +242,48 @@
 </dd></dl>
 
 </div>
-<span class="target" id="module-cloze.forms"></span><div class="section" id="id1">
-<h2>forms.py<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>File for all of the Custom FlaskForms we use</p>
+<span class="target" id="module-cloze.models"></span><div class="section" id="models-py">
+<h2>models.py<a class="headerlink" href="#models-py" title="Permalink to this headline">¶</a></h2>
+<p>The models that go into the database</p>
 <dl class="class">
-<dt>
-<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">ChallengeForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
-<dd><p>A challenge FlaskForm</p>
+<dt id="cloze.models.Challenge">
+<em class="property">class </em><code class="sig-prename descclassname">cloze.models.</code><code class="sig-name descname">Challenge</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.models.Challenge" title="Permalink to this definition">¶</a></dt>
+<dd><p>The challenge Model</p>
 </dd></dl>
 
 <dl class="class">
-<dt>
-<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">EntryForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
-<dd><p>A journal entry FlaskForm</p>
+<dt id="cloze.models.Entry">
+<em class="property">class </em><code class="sig-prename descclassname">cloze.models.</code><code class="sig-name descname">Entry</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.models.Entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>The journal entry Model</p>
 </dd></dl>
 
 <dl class="class">
-<dt>
-<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">LoginForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
-<dd><p>A login FlaskForm</p>
+<dt id="cloze.models.Meal">
+<em class="property">class </em><code class="sig-prename descclassname">cloze.models.</code><code class="sig-name descname">Meal</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.models.Meal" title="Permalink to this definition">¶</a></dt>
+<dd><p>The meal log meal Model</p>
 </dd></dl>
 
 <dl class="class">
-<dt>
-<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">MealLogForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
-<dd><p>A Meallog FlaskForm</p>
+<dt id="cloze.models.Task">
+<em class="property">class </em><code class="sig-prename descclassname">cloze.models.</code><code class="sig-name descname">Task</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.models.Task" title="Permalink to this definition">¶</a></dt>
+<dd><p>The to do list task Model</p>
 </dd></dl>
 
 <dl class="class">
-<dt>
-<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">RegistrationForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
-<dd><p>A registration FlaskForm</p>
-<dl class="method">
-<dt>
-<code class="sig-name descname">validate_email</code><span class="sig-paren">(</span><em class="sig-param">email</em><span class="sig-paren">)</span></dt>
-<dd><p>Determines if an email is already in use</p>
+<dt id="cloze.models.User">
+<em class="property">class </em><code class="sig-prename descclassname">cloze.models.</code><code class="sig-name descname">User</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.models.User" title="Permalink to this definition">¶</a></dt>
+<dd><p>The User Model</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cloze.models.load_user">
+<code class="sig-prename descclassname">cloze.models.</code><code class="sig-name descname">load_user</code><span class="sig-paren">(</span><em class="sig-param">userId</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.models.load_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads user</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>username</strong> -- The email that is being checked</p>
+<dd class="field-odd"><p><strong>userId</strong> -- the id of the user being loaded</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="method">
-<dt>
-<code class="sig-name descname">validate_username</code><span class="sig-paren">(</span><em class="sig-param">username</em><span class="sig-paren">)</span></dt>
-<dd><p>Determines if a username is already in use</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>username</strong> -- The username that is being checked</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt>
-<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">ToDoForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
-<dd><p>A to do list FlaskForm</p>
-</dd></dl>
-
-<dl class="class">
-<dt>
-<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">UpdateAccountForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
-<dd><p>A update account FlaskForm</p>
 </dd></dl>
 
 </div>
