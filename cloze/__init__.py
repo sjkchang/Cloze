@@ -23,7 +23,7 @@ def create_app(testing):
     testing
         boolean to determine if the app is actually being deployed or if it is running a test
     """
-    app = Flask(__name__, instance_relative_config=False)
+    app = Flask(__name__, instance_relative_config=False, template_folder='templates')
 
     if testing == False:
         # load the instance config, if it exists, when not testing
