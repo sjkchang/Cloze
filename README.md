@@ -1,8 +1,18 @@
 # vigilant-waffle
-Cloze, a productivity webapp, (travis ci says failing, but tests pass if you run pytest in cmd line)
+Cloze, a productivity webapp
 [![Build Status](https://travis-ci.com/sjkchang/vigilant-waffle.svg?branch=master)](https://travis-ci.com/sjkchang/vigilant-waffle)
 ## How to Run
 To run the project, run the run.py file with python 2.7, the go to http://localhost:5000 (pip Install any imports that you do not already have on your system) If you try to run on python 3 you will get an error cannont convert byte to json, install simplejson to fix this.
+
+## Test Cases
+The test cases are located in vigilant-waffle/cloze, the two files are called test_mealLog and test_dbControl. test_mealLog has 5 tests, and test_dbControl has 3. To run, navigate to project root directory and run the command pytest
+
+## Documentation
+The sphinx documentation is located in vigilant-waffle/build/html/index.html
+
+## Heroku Deployment
+https://cloze-cs131.herokuapp.com/ 
+The app deploys succesfully, but when run here, we get an internal server error due to a template not found error and haven't been able to fix it
 
 ### Feature #1 Register
 Registers user into the database, with their username, email, and password
@@ -42,3 +52,5 @@ To verify: Click the edit button on a challenges, meal or journal entry, and res
 
 ### Feature #12 Delete challenges, meals and journal entries
 TO verify: Click the delete button on a challenges, meal or journal entry, it should disappear
+
+
