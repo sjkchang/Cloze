@@ -11,22 +11,15 @@
                 <input align="right" class="btn btn-sm btn-outline-primary py-0" style="float: right; font-size: 0.8em;" type="submit" value="Edit">
             </form>
             <legend class="border-bottom mb-4 text-navy">{{meal.food}}</legend>
-            <p>
-                Servings: {{meal.servings}}
-                Calories: {{meal.calories}}
-            </p>
-            <p>
-                Protein(g): {{meal.protein}}
-                Carbs(g): {{meal.carbs}}
-                Fats(g): {{meal.fats}}
-            </p>
+            <p><pre class="tab">Servings: {{meal.servings}}    Calories: {{meal.calories}}</pre></p>
+            <p><pre class="tab">Protein(g): {{meal.protein}}g   Carbs(g): {{meal.carbs}}g    Fats(g): {{meal.fats}}g</pre></p>
         </div>
     {% endfor %}
     </div>
     <a class="ml-2" href="{{ url_for('mealLogAdd') }}">Add Meal</a>
 </div>
 <div class="col-md-4">
-    <div class="content-section">
+    <div style="text-decoration: underline;" class="content-section">
         <h3>Total Calories: {{totCal}}</h3>
         <h4>Total Carbs: {{totCarbs}}</h4>
         <h4>Total Fats: {{totFat}}</h4>

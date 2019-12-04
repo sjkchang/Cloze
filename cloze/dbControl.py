@@ -1,15 +1,45 @@
+"""
+dbControl.py
+====================================
+Helps manipulate database
+"""
+
 from cloze import db, bcrypt
 from flask import flash
 from .models import User, Meal, Task, Challenge, Entry
 from flask_login import current_user
 
 class Control():
+    """A Class to manipulate the database"""
+
     def delete(self, type, id):
+        """
+        Delete something from the database
+
+        Parameters
+        ----------
+        type
+            A model indicating what db model the element to be deleted is
+        id
+            The db id of the element to be deleted
+        """
         delete = db.session.query(type).get_or_404(id)
         db.session.delete(delete)
         db.session.commit()
 
     def edit(self, type, form, id):
+        """
+        Edit something in the database
+
+        Parameters
+        ----------
+        type
+            A model indicating what db model the element to be deleted is
+        form
+            A flask form that contains what to change the elements values to
+        id
+            The db id of the element to be edited
+        """
         edit = db.session.query(type).get_or_404(id)
         if(type == Meal):
             edit.food = form.food.data
@@ -31,6 +61,18 @@ class Control():
         db.session.commit()
 
     def add(self, type, formData, user):
+        """
+        Add something in the database
+
+        Parameters
+        ----------
+        type
+            A model indicating what db model the element to be added is
+        formData
+            A list that contains data about what to set the elements values to
+        user
+            The user that created the element
+        """
         if(type == Challenge):
             challenge = Challenge(title=formData[0], description=formData[1], owner=user)
             db.session.add(challenge)
@@ -52,6 +94,14 @@ class Control():
             db.session.commit()
 
     def addUser(self, formData):
+        """
+        Add a user to the database
+
+        Parameters
+        ----------
+        formData
+            A list that contains data about what to set the users username email and password hash to
+        """
         passwordHash = bcrypt.generate_password_hash(formData[2]).decode('utf-8')
         testUser = User(username=formData[0], email=formData[1], password_hash=passwordHash)
         db.session.add(testUser)

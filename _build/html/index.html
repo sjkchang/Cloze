@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="python">
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome to cloze&#39;s documentation! &#8212; cloze  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-cloze.__init__">
+<span id="welcome-to-cloze-s-documentation"></span><h1>Welcome to cloze's documentation!<a class="headerlink" href="#module-cloze.__init__" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="init-py">
+<h2>__init__.py<a class="headerlink" href="#init-py" title="Permalink to this headline">¶</a></h2>
+<p>The core module of my project</p>
+<dl class="function">
+<dt id="cloze.__init__.create_app">
+<code class="sig-prename descclassname">cloze.__init__.</code><code class="sig-name descname">create_app</code><span class="sig-paren">(</span><em class="sig-param">testing</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.__init__.create_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes flask app</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>testing</strong> -- boolean to determine if the app is actually being deployed or if it is running a test</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<span class="target" id="module-cloze.dbControl"></span><div class="section" id="dbcontrol-py">
+<h2>dbControl.py<a class="headerlink" href="#dbcontrol-py" title="Permalink to this headline">¶</a></h2>
+<p>Helps manipulate database</p>
+<dl class="class">
+<dt id="cloze.dbControl.Control">
+<em class="property">class </em><code class="sig-prename descclassname">cloze.dbControl.</code><code class="sig-name descname">Control</code><a class="headerlink" href="#cloze.dbControl.Control" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Class to manipulate the database</p>
+<dl class="method">
+<dt id="cloze.dbControl.Control.add">
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param">type</em>, <em class="sig-param">formData</em>, <em class="sig-param">user</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.dbControl.Control.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add something in the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> -- A model indicating what db model the element to be added is</p></li>
+<li><p><strong>formData</strong> -- A list that contains data about what to set the elements values to</p></li>
+<li><p><strong>user</strong> -- The user that created the element</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="cloze.dbControl.Control.addUser">
+<code class="sig-name descname">addUser</code><span class="sig-paren">(</span><em class="sig-param">formData</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.dbControl.Control.addUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a user to the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>formData</strong> -- A list that contains data about what to set the users username email and password hash to</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="cloze.dbControl.Control.delete">
+<code class="sig-name descname">delete</code><span class="sig-paren">(</span><em class="sig-param">type</em>, <em class="sig-param">id</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.dbControl.Control.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete something from the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> -- A model indicating what db model the element to be deleted is</p></li>
+<li><p><strong>id</strong> -- The db id of the element to be deleted</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="cloze.dbControl.Control.edit">
+<code class="sig-name descname">edit</code><span class="sig-paren">(</span><em class="sig-param">type</em>, <em class="sig-param">form</em>, <em class="sig-param">id</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.dbControl.Control.edit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Edit something in the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> -- A model indicating what db model the element to be deleted is</p></li>
+<li><p><strong>form</strong> -- A flask form that contains what to change the elements values to</p></li>
+<li><p><strong>id</strong> -- The db id of the element to be edited</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<span class="target" id="module-cloze.forms"></span><div class="section" id="forms-py">
+<h2>forms.py<a class="headerlink" href="#forms-py" title="Permalink to this headline">¶</a></h2>
+<p>File for all of the Custom FlaskForms we use</p>
+<dl class="class">
+<dt id="cloze.forms.ChallengeForm">
+<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">ChallengeForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.forms.ChallengeForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>A challenge FlaskForm</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cloze.forms.EntryForm">
+<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">EntryForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.forms.EntryForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>A journal entry FlaskForm</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cloze.forms.LoginForm">
+<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">LoginForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.forms.LoginForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>A login FlaskForm</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cloze.forms.MealLogForm">
+<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">MealLogForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.forms.MealLogForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Meallog FlaskForm</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cloze.forms.RegistrationForm">
+<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">RegistrationForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.forms.RegistrationForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>A registration FlaskForm</p>
+<dl class="method">
+<dt id="cloze.forms.RegistrationForm.validate_email">
+<code class="sig-name descname">validate_email</code><span class="sig-paren">(</span><em class="sig-param">email</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.forms.RegistrationForm.validate_email" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if an email is already in use</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>username</strong> -- The email that is being checked</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="cloze.forms.RegistrationForm.validate_username">
+<code class="sig-name descname">validate_username</code><span class="sig-paren">(</span><em class="sig-param">username</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.forms.RegistrationForm.validate_username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if a username is already in use</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>username</strong> -- The username that is being checked</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cloze.forms.ToDoForm">
+<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">ToDoForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.forms.ToDoForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>A to do list FlaskForm</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cloze.forms.UpdateAccountForm">
+<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">UpdateAccountForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cloze.forms.UpdateAccountForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>A update account FlaskForm</p>
+</dd></dl>
+
+</div>
+<span class="target" id="module-cloze.forms"></span><div class="section" id="id1">
+<h2>forms.py<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>File for all of the Custom FlaskForms we use</p>
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">ChallengeForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
+<dd><p>A challenge FlaskForm</p>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">EntryForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
+<dd><p>A journal entry FlaskForm</p>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">LoginForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
+<dd><p>A login FlaskForm</p>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">MealLogForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
+<dd><p>A Meallog FlaskForm</p>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">RegistrationForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
+<dd><p>A registration FlaskForm</p>
+<dl class="method">
+<dt>
+<code class="sig-name descname">validate_email</code><span class="sig-paren">(</span><em class="sig-param">email</em><span class="sig-paren">)</span></dt>
+<dd><p>Determines if an email is already in use</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>username</strong> -- The email that is being checked</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="sig-name descname">validate_username</code><span class="sig-paren">(</span><em class="sig-param">username</em><span class="sig-paren">)</span></dt>
+<dd><p>Determines if a username is already in use</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>username</strong> -- The username that is being checked</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">ToDoForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
+<dd><p>A to do list FlaskForm</p>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="sig-prename descclassname">cloze.forms.</code><code class="sig-name descname">UpdateAccountForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
+<dd><p>A update account FlaskForm</p>
+</dd></dl>
+
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">cloze</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Steven.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

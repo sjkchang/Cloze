@@ -1,3 +1,9 @@
+"""
+__init__.py
+====================================
+The core module of my project
+"""
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
@@ -7,7 +13,16 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 bcrypt = Bcrypt()
 
+
 def create_app(testing):
+    """
+    Initializes flask app
+
+    Parameters
+    ----------
+    testing
+        boolean to determine if the app is actually being deployed or if it is running a test
+    """
     app = Flask(__name__, instance_relative_config=False)
 
     if testing == False:
@@ -28,5 +43,3 @@ def create_app(testing):
         db.create_all()
 
         return app
-
-app = create_app(False)
