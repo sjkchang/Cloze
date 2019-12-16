@@ -1,7 +1,7 @@
-from cloze import app, db, bcrypt, login_manager
+from . import app, db, bcrypt, login_manager
 from flask import render_template, url_for, flash, redirect, request
-from forms import LoginForm, RegistrationForm, PlannerForm, UpdateAccountForm, MealLogForm
-from models import User, Meal
+from .forms import LoginForm, RegistrationForm, PlannerForm, UpdateAccountForm, MealLogForm
+#from .models import User, Meal
 from flask_login import login_user, logout_user, current_user, login_required
 
 @app.route('/home')
